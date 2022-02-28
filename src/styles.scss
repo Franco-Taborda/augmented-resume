@@ -1,1 +1,107 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$custom-palette: (
+  50: #fff,
+  100: #5fa2b4,
+  200: #31ffff,
+  300: #39deee,
+  400: #07d4ef,
+  500: #0087a8,
+  600: #007b99,
+  700: #334149,
+  800: #242b30,
+  900: #161a1d,
+  A100: #9ffffd,
+  A200: #b1f2f7,
+  A400: #acedf8,
+  A700: #26aedd,
+  contrast: (
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: white,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    // ... continues to 900
+  ),
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$angular-template-pwa-primary: mat.define-palette($custom-palette);
+$angular-template-pwa-accent: mat.define-palette($custom-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$angular-template-pwa-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$angular-template-pwa-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: $angular-template-pwa-primary,
+      accent: $angular-template-pwa-accent,
+      warn: $angular-template-pwa-warn,
+    ),
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($angular-template-pwa-theme);
+
+$gunnmetal: #242b30;
+$eerie-black: #161a1d;
+$white: #fff;
+$aqua: #31ffff;
+$sky-blue-crayola: #07d4ef;
+$sky-blue-crayola2: #39deee;
+
+$font-family-primary: "Libre Franklin", sans-serif;
+$font-primary: $white;
+$font-highlight: $sky-blue-crayola2;
+
+$bg: $eerie-black;
+
+html,
+body {
+  height: auto;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.font-highlight {
+  color: $font-highlight;
+}
+
+.flex {
+  display: flex;
+
+  &.justify-center {
+    justify-content: center;
+  }
+
+  &.align-center {
+    align-items: center;
+  }
+
+  &--col {
+    flex-direction: column;
+  }
+}

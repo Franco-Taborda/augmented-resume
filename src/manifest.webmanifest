@@ -3,9 +3,10 @@
   "short_name": "angular-template-pwa",
   "theme_color": "#161A1D",
   "background_color": "#fafafa",
-  "display": "fullscreen",
+  "display": "standalone",
   "scope": "./",
   "start_url": "./",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "assets/icons/icon-72x72.png",

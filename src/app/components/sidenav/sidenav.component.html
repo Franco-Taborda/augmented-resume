@@ -1,0 +1,19 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="over" closed fixedInViewport="true">
+    <div class="sidenav__logo-container">
+      <img class="sidenav__logo" src="assets/images/onlyLogo.svg" alt="logo image" (click)="onCloseSidenav()" />
+    </div>
+    <ng-content select="[navList]"></ng-content>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <img
+      id="toggleIcon"
+      data-test="toggle-sidenav-button"
+      class="toggle-icon"
+      src="assets/images/onlyLogo.svg"
+      alt="logo image"
+      (click)="onOpenSidenav()"
+    />
+    <ng-content select="[content]"></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,15 @@
+<app-sidenav>
+  <mat-nav-list navList>
+    <mat-list-item (click)="onItemClick('app-start')">Start</mat-list-item>
+    <mat-list-item (click)="onItemClick('app-skills')">Skills</mat-list-item>
+    <mat-list-item (click)="onItemClick('app-experience')">Experience</mat-list-item>
+    <mat-list-item (click)="onItemClick('app-contact')">Contact</mat-list-item>
+  </mat-nav-list>
+
+  <ng-container content>
+    <app-start #start></app-start>
+    <app-skills #skills></app-skills>
+    <app-experience #experience></app-experience>
+    <app-contact #contact></app-contact>
+  </ng-container>
+</app-sidenav>
