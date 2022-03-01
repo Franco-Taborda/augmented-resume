@@ -12,14 +12,14 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { ResumeComponent } from './components/resume/resume.component';
 import { SkillsComponent } from './components/skills/skills.component';
-import { StartComponent } from './components/start/start.component';
+import { AboutComponent } from './components/about/about.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     SidenavComponent,
-    StartComponent,
+    AboutComponent,
     SkillsComponent,
     ExperienceComponent,
     ContactComponent,

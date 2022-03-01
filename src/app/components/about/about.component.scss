@@ -1,5 +1,9 @@
 @import "/src/styles.scss";
 
+.content {
+  height: 100vh;
+}
+
 .logo {
   width: 30vw;
   margin-top: 6vh;
@@ -19,4 +23,8 @@
     text-align: left;
     opacity: 0.5;
   }
+}
+
+.controls {
+  margin: 2rem;
 }

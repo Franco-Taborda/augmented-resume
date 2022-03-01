@@ -13,7 +13,7 @@ export class SidenavComponent {
   constructor(private viewportScroller: ViewportScroller) {}
 
   closeSidenav(): void {
-    document.querySelector('app-start')?.scrollIntoView({ behavior: 'smooth' });
+    document.querySelector('app-about')?.scrollIntoView({ behavior: 'smooth' });
     this.sidenav.close();
   }
 

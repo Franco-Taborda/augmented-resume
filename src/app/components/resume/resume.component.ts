@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { SidenavComponent } from 'components/sidenav/sidenav.component';
 
 @Component({
