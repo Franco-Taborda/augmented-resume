@@ -38,6 +38,11 @@ describe('AboutComponent', () => {
     expect(button).toBeTruthy();
   });
 
+  it('should show an about section', () => {
+    const aboutSection = debugElem.query(By.css('[data-test="about"]'));
+    expect(aboutSection).toBeTruthy();
+  });
+
   it('#downloadCV should show a snackbar', () => {
     const dialogOpenSpy = spyOn(matSnackBar, 'open');
     component.downloadCV();
