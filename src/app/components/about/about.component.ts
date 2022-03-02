@@ -32,6 +32,6 @@ export class AboutComponent {
     }
 
     const messageIndex = Math.floor(this.counter / 3);
-    this.snackBar.open(Messages[messageIndex], 'Got it');
+    this.snackBar.open(Messages[messageIndex], 'Got it', { duration: 1200 });
   }
 }

@@ -4,6 +4,7 @@
       <img class="sidenav__logo" src="assets/images/onlyLogo.svg" alt="logo image" (click)="closeSidenav()" />
     </div>
     <ng-content select="[navList]"></ng-content>
+    <p class="version mat-caption" data-test="version">V{{ version }}</p>
   </mat-sidenav>
   <mat-sidenav-content>
     <img

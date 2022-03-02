@@ -42,4 +42,9 @@ describe('SidenavComponent', () => {
 
     expect(sidenavOpenSpy).toHaveBeenCalled();
   });
+
+  it('should show an app version', () => {
+    const versionElement = fixture.debugElement.query(By.css('[data-test="version"]'));
+    expect(versionElement).toBeTruthy();
+  });
 });

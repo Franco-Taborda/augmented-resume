@@ -1,24 +1,21 @@
-@import "/src/styles.scss";
-
 .content {
   height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 .logo {
-  width: 30vw;
-  margin-top: 6vh;
+  width: 125px;
+  margin-top: 55px;
 }
 
 .greeting {
   margin: 2rem;
 
   &__title {
-    // font-size: 3rem;
     margin: 0;
   }
 
   &__subtitle {
-    // font-size: 1.2rem;
     font-family: Arial;
     text-align: left;
     opacity: 0.5;
