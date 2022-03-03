@@ -1,0 +1,34 @@
+.content {
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+.logo {
+  width: 125px;
+  margin-top: 55px;
+}
+
+.greeting {
+  margin: 2rem;
+
+  &__title {
+    margin: 0;
+  }
+
+  &__subtitle {
+    font-family: Arial;
+    text-align: left;
+    opacity: 0.5;
+  }
+}
+
+.about-me {
+  margin: 2rem;
+
+  &__title {
+  }
+}
+
+.controls {
+  margin: 2rem;
+}

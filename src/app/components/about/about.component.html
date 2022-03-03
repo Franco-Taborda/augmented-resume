@@ -1,0 +1,31 @@
+<main class="content">
+  <div class="logo-container flex justify-center">
+    <img class="logo" src="assets/images/onlyLogo.svg" alt="logo image" />
+  </div>
+
+  <section data-test="greeting" class="greeting">
+    <h1 class="greeting__title mat-display-3">
+      Hi,<br /><span>I'm <span class="font-highlight">Franco</span></span>
+    </h1>
+    <h2 class="greeting__subtitle">Front End <span class="font-highlight">Dev</span>eloper</h2>
+  </section>
+
+  <section data-test="about" class="about-me">
+    <h2>About me</h2>
+    <p class="bio mat-body">
+      More than 3 years of <span class="font-highlight">Front End Development</span>.<br />
+      Curious, organized and autodidact.<br />
+      I've worked mostly with big clients, on new and old apps, desktop and mobile ones.
+    </p>
+  </section>
+
+  <section class="controls">
+    <button data-test="download-button" mat-stroked-button color="primary" (click)="downloadCV()">Download CV</button>
+  </section>
+</main>
+
+<!-- Separate the about section and the home section.
+On the home section, add a hire me button to redirect to contact
+section
+Under that button, add a component that for each click it draws a "hire" and then a "me" in a random position
+and then they dissapear -->

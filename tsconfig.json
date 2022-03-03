@@ -10,6 +10,7 @@
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "strictPropertyInitialization": false,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -18,7 +19,14 @@
     "importHelpers": true,
     "target": "es2017",
     "module": "es2020",
-    "lib": ["es2020", "dom"]
+    "lib": ["es2020", "dom"],
+    "paths": {
+      "mobile/*": ["src/app/components/mobile/*"],
+      "desktop/*": ["src/app/components/desktop/*"],
+      "components/*": ["src/app/components/*"],
+      "ui/*": ["src/app/ui/*"],
+      "shared/*": ["src/app/shared/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
