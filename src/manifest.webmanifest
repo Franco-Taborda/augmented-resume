@@ -1,6 +1,6 @@
 {
-  "name": "angular-template-pwa",
-  "short_name": "angular-template-pwa",
+  "name": "augmented-resume",
+  "short_name": "augmented-resume",
   "theme_color": "#161A1D",
   "background_color": "#fafafa",
   "display": "standalone",
