@@ -21,11 +21,10 @@
     "module": "es2020",
     "lib": ["es2020", "dom"],
     "paths": {
-      "mobile/*": ["src/app/components/mobile/*"],
-      "desktop/*": ["src/app/components/desktop/*"],
       "components/*": ["src/app/components/*"],
-      "ui/*": ["src/app/ui/*"],
-      "shared/*": ["src/app/shared/*"]
+      "services/*": ["src/app/services/*"],
+      "shared/*": ["src/app/shared/*"],
+      "utils/*": ["src/app/utils/*"]
     }
   },
   "angularCompilerOptions": {

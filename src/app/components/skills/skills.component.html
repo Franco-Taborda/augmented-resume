@@ -1,1 +1,64 @@
-<h1 class="mat-display-4">Skills Works!</h1>
+<section class="container">
+  <h1 data-test="title" class="mat-h1">Skills</h1>
+
+  <ng-container *ngIf="skillsCategories?.length">
+    <section data-test="category-section" class="category" *ngFor="let categorizedSkills of skillsCategories">
+      <mat-accordion>
+        <mat-expansion-panel data-test="expandable-category" class="category__exp-panel">
+          <mat-expansion-panel-header>
+            <mat-panel-title>{{ categorizedSkills.name }}</mat-panel-title>
+            <mat-panel-description data-test="category-counter" class="category__counter justify-end">
+              {{ categorizedSkills.skills?.length }}
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="skill-card-container">
+            <ng-container
+              *ngFor="let skill of categorizedSkills?.skills"
+              [ngTemplateOutlet]="skillCard"
+              [ngTemplateOutletContext]="{ skill, $implicit: categorizedSkills.name }"
+            ></ng-container>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </section>
+  </ng-container>
+</section>
+
+<ng-template #skillCard let-categoryName let-skill="skill">
+  <mat-card data-test="skill-card" class="skill-card">
+    <mat-card-title-group>
+      <mat-card-subtitle data-test="skill-category">{{ categoryName }}</mat-card-subtitle>
+      <mat-card-title data-test="skill-name">{{ skill.name }}</mat-card-title>
+      <div
+        mat-card-avatar
+        class="skill-card__icon"
+        [ngStyle]="{ 'background-image': 'url(' + skill.logoSrc + ')' }"
+      ></div>
+    </mat-card-title-group>
+    <mat-card-content>
+      <p data-test="skill-description">{{ skill.description }}</p>
+      <button
+        *ngIf="skill.certificates?.length"
+        data-test="skill-certificate-button"
+        mat-stroked-button
+        color="primary"
+        (click)="showCertificates(skill)"
+      >
+        Certificates
+      </button>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
+<ng-template #certificatesTemplate let-skillCertificates>
+  <div matDialogTitle>Certificates</div>
+  <mat-nav-list navList class="skill-card__certificates-list">
+    <ng-container *ngFor="let certificate of skillCertificates">
+      <a mat-list-item data-test="skill-certificate" [href]="certificate.url" target="_blank">
+        {{ certificate.name }}
+      </a>
+      <mat-divider></mat-divider>
+    </ng-container>
+  </mat-nav-list>
+</ng-template>

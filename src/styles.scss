@@ -8,31 +8,43 @@
 // Be sure that you only ever include this mixin once!
 @include mat.core();
 
-$light-cyan: #caf0f8;
-$blizzard-blue: #ade8f4;
-$middle-blue: #90e0ef;
-$sky-blue-crayola: #48cae4;
-$pacific-blue: #00b4d8;
-$blue-green: #0096c7;
-$star-command-blue: #0077b6;
-$dark-cornflower-blue: #023e8a;
-$midnight-blue: #03045e;
+:root {
+  --light-cyan: #caf0f8;
+  --blizzard-blue: #ade8f4;
+  --middle-blue: #90e0ef;
+  --sky-blue-crayola: #48cae4;
+  --pacific-blue: #00b4d8;
+  --blue-green: #0096c7;
+  --star-command-blue: #0077b6;
+  --dark-cornflower-blue: #023e8a;
+  --midnight-blue: #03045e;
+
+  --A100: #00d3ff;
+  --A200: #00a8ff;
+  --A400: #007cff;
+  --A700: #0050ff;
+
+  --gunnmetal: #242b30;
+  --eerie-black: #161a1d;
+  --aqua: #31ffff;
+  --sky-blue-crayola2: #39deee;
+}
 
 $custom-palette: (
   50: #fff,
-  100: $light-cyan,
-  200: $blizzard-blue,
-  300: $middle-blue,
-  400: $sky-blue-crayola,
-  500: $pacific-blue,
-  600: $blue-green,
-  700: $star-command-blue,
-  800: $dark-cornflower-blue,
-  900: $midnight-blue,
-  A100: #00d3ff,
-  A200: #00a8ff,
-  A400: #007cff,
-  A700: #0050ff,
+  100: var(--light-cyan),
+  200: var(--blizzard-blue),
+  300: var(--middle-blue),
+  400: var(--sky-blue-crayola),
+  500: var(--pacific-blue),
+  600: var(--blue-green),
+  700: var(--star-command-blue),
+  800: var(--dark-cornflower-blue),
+  900: var(--midnight-blue),
+  A100: var(--A100),
+  A200: var(--A200),
+  A400: var(--A400),
+  A700: var(--A700),
   contrast: (
     50: rgba(black, 0.87),
     100: rgba(black, 0.87),
@@ -73,14 +85,8 @@ $angular-template-pwa-theme: mat.define-dark-theme(
 // that you are using.
 @include mat.all-component-themes($angular-template-pwa-theme);
 
-$gunnmetal: #242b30;
-$eerie-black: #161a1d;
-$aqua: #31ffff;
-$sky-blue-crayola2: #39deee;
-
-// $font-family-primary: "Libre Franklin", sans-serif;
 $font-family-primary: Roboto, "Helvetica Neue", sans-serif;
-$font-highlight: mat.get-color-from-palette($custom-palette, "A100");
+$font-highlight: var(--A100);
 
 html,
 body {

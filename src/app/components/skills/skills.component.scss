@@ -1,0 +1,36 @@
+.container {
+  margin: 2rem;
+}
+
+.category {
+  margin-top: 2rem;
+
+  &__exp-panel {
+    background-color: var(--star-command-blue);
+  }
+
+  &__counter {
+    justify-content: flex-end;
+    color: var(--aqua);
+  }
+}
+
+.skill-card {
+  min-width: 50px;
+
+  &-container {
+    display: grid;
+    gap: 6px;
+  }
+
+  &__icon {
+    border-radius: 0;
+    background-size: cover;
+  }
+
+  &__certificates-list {
+    a {
+      font-size: 0.8rem;
+    }
+  }
+}
