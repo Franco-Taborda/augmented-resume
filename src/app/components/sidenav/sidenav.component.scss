@@ -1,9 +1,14 @@
+@use "sass:color";
+
 .toggle-icon {
   position: fixed;
-  margin: 12px;
+  padding: 10px;
   height: 40px;
   width: 40px;
   cursor: pointer;
+  border-bottom-right-radius: 35px;
+  background-color: var(--default-bg-light);
+  z-index: 100;
 }
 
 .sidenav {
