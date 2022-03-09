@@ -11,10 +11,8 @@
       <mat-icon class="material-icons-outlined" aria-hidden="false" aria-label="view list icon">person_add</mat-icon>
     </button>
   </h1>
-  <h3 data-test="subtitle" class="mat-h3">Send me an <span class="font-highlight">email</span> or use the provided</h3>
-
-  <p data-test="contact-text" class="mat-body flex align-center">
-    Press the
+  <h3 data-test="subtitle" class="mat-h3 contact__subtitle">
+    Send me an <span class="font-highlight">email</span> or press
     <mat-icon
       class="material-icons-outlined spaced-icon"
       color="primary"
@@ -23,8 +21,8 @@
     >
       person_add
     </mat-icon>
-    button to see contact info
-  </p>
+    to see contact info
+  </h3>
 
   <mat-card class="form-card">
     <mat-card-subtitle>Send email</mat-card-subtitle>
@@ -115,10 +113,10 @@
       <mat-list-item>
         <div class="contact__info-item flex align-center">
           <p class="contact__info-item__name">{{ info.name }}</p>
-          <a mat-icon-button [href]="info.link" target="_blank" aria-label="Open link on new tab">
+          <a mat-icon-button [href]="info.link" target="_blank" aria-label="Open link on new tab" *ngIf="info.link">
             <mat-icon color="accent">open_in_new</mat-icon>
           </a>
-          <button mat-icon-button>
+          <button mat-icon-button (click)="copy(info.id)" *ngIf="info.id">
             <mat-icon color="primary">content_copy</mat-icon>
           </button>
         </div>

@@ -1,3 +1,4 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
@@ -38,6 +39,7 @@ export class ContactComponent implements OnInit, OnDestroy {
     private matBottomSheet: MatBottomSheet,
     private emailService: EmailService,
     private contactService: ContactInfoService,
+    private clipboard: Clipboard,
   ) {}
 
   ngOnInit() {
@@ -103,5 +105,9 @@ export class ContactComponent implements OnInit, OnDestroy {
             panelClass: 'snackbar--error',
           }),
       });
+  }
+
+  copy(data: string): void {
+    this.clipboard.copy(data);
   }
 }

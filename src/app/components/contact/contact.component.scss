@@ -25,6 +25,14 @@
     }
   }
 
+  &__subtitle {
+    mat-icon {
+      margin: 0 3px;
+      vertical-align: top;
+      font-size: 1.25em;
+    }
+  }
+
   &__info-item {
     width: 100%;
     justify-content: flex-end;
