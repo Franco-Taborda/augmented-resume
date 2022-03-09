@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement, forwardRef, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,6 +12,29 @@ import { EmailService } from 'services/email.service';
 import { SharedModule } from 'shared/shared.module';
 
 import { ContactComponent } from './contact.component';
+
+const FORM_MOCK = { emailAddress: 'test@example.com', fullName: 'test', message: 'test message', recaptcha: 'test' };
+
+@Component({
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'ngx-recaptcha2',
+  template: '<input type="text" [value]="" />',
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => NgxCaptchaMockComponent),
+      multi: true,
+    },
+  ],
+})
+class NgxCaptchaMockComponent implements ControlValueAccessor {
+  @Input() siteKey: any;
+  @Input() formControlName: any;
+  writeValue(obj: any): void {}
+  registerOnChange(fn: any): void {}
+  registerOnTouched(fn: any): void {}
+  setDisabledState?(isDisabled: boolean): void {}
+}
 
 describe('ContactComponent', () => {
   let component: ContactComponent;
@@ -24,9 +47,10 @@ describe('ContactComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ContactComponent],
+      declarations: [ContactComponent, NgxCaptchaMockComponent],
       imports: [CommonModule, SharedModule, ReactiveFormsModule, HttpClientModule],
       providers: [EmailService],
+      schemas: [NO_ERRORS_SCHEMA],
     })
       .compileComponents()
       .then(() => {
@@ -49,11 +73,6 @@ describe('ContactComponent', () => {
   it('should show a title', () => {
     const title = debugElement.query(By.css('[data-test="title"]'));
     expect(title).toBeTruthy();
-  });
-
-  it('should show a text', () => {
-    const text = debugElement.query(By.css('[data-test="contact-text"]'));
-    expect(text).toBeTruthy();
   });
 
   it('should show a social media button', () => {
@@ -152,6 +171,11 @@ describe('ContactComponent', () => {
     expect(messageError).toBeTruthy();
   });
 
+  it('should have a recaptcha', () => {
+    const recaptcha = debugElement.query(By.css('[data-test="recaptcha"]'));
+    expect(recaptcha).toBeTruthy();
+  });
+
   // Submit button
 
   it('should show a submit button', () => {
@@ -164,18 +188,18 @@ describe('ContactComponent', () => {
     expect(getSubmitButton().nativeElement.disabled).toBeTrue();
 
     component.form.markAllAsTouched();
-    component.form.setValue({ emailAddress: 'test@example.com', fullName: 'test', message: 'test message' });
+    component.form.setValue(FORM_MOCK);
     fixture.detectChanges();
     expect(getSubmitButton().nativeElement.disabled).toBeFalsy();
 
-    component.form.setValue({ emailAddress: 'email invalid test', fullName: 'test', message: 'test message' });
+    component.form.setValue({ ...FORM_MOCK, ...{ emailAddress: 'email invalid test' } });
     fixture.detectChanges();
     expect(getSubmitButton().nativeElement.disabled).toBeTrue();
   });
 
   it('#submit should show a confirmation dialog', () => {
     const dialogSpy = spyOn(matDialog, 'open').and.callThrough();
-    component.form.setValue({ emailAddress: 'test@example.com', fullName: 'test', message: 'test message' });
+    component.form.setValue(FORM_MOCK);
     component.submit();
 
     expect(dialogSpy).toHaveBeenCalled();
@@ -183,29 +207,27 @@ describe('ContactComponent', () => {
 
   it('#sendEmail should call the email service with the provided data', () => {
     const emailServiceSpy = spyOn(emailService, 'sendEmail').and.returnValue(of('test'));
-    component.form.setValue({ emailAddress: 'test@example.com', fullName: 'test', message: 'test message' });
+    component.form.setValue(FORM_MOCK);
     component['sendEmail']();
 
     expect(emailServiceSpy).toHaveBeenCalledWith(component.form.value);
   });
 
   it('should show a snack bar if email post is successful', () => {
-    const formValue = { emailAddress: 'test@example.com', fullName: 'test', message: 'test message' };
     const matSnackBarSpy = spyOn(matSnackBar, 'open');
 
     spyOn(emailService, 'sendEmail').and.returnValue(of('Success!'));
-    component.form.setValue(formValue);
+    component.form.setValue(FORM_MOCK);
     component['sendEmail']();
 
     expect(matSnackBarSpy).toHaveBeenCalled();
   });
 
   it('should show a snack bar if email post fails', () => {
-    const formValue = { emailAddress: 'test@example.com', fullName: 'test', message: 'test message' };
     const matSnackBarSpy = spyOn(matSnackBar, 'open');
 
     spyOn(emailService, 'sendEmail').and.returnValue(throwError(() => new Error('test')));
-    component.form.setValue(formValue);
+    component.form.setValue(FORM_MOCK);
     component['sendEmail']();
 
     expect(matSnackBarSpy).toHaveBeenCalled();

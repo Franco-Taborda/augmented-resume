@@ -74,6 +74,8 @@
           </mat-error>
         </mat-form-field>
 
+        <ngx-recaptcha2 data-test="recaptcha" [siteKey]="siteKey" formControlName="recaptcha"></ngx-recaptcha2>
+
         <button
           data-test="submit"
           class="submit-button"
