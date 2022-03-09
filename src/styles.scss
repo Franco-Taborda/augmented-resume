@@ -119,3 +119,21 @@ body {
     flex-direction: column;
   }
 }
+
+.item-section {
+  margin: 2rem 0;
+}
+
+.snackbar {
+  &--success {
+    background-color: var(--aqua);
+  }
+  &--error {
+    color: white;
+    background-color: mat.get-color-from-palette($augmented-resume-warn, 900);
+  }
+}
+
+.mat-bottom-sheet-container {
+  min-width: 75vw !important;
+}

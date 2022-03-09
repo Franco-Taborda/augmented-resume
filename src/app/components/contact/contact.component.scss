@@ -1,0 +1,38 @@
+.form {
+  min-width: 150px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 15px;
+
+  &-card {
+    margin-top: 2rem;
+  }
+}
+
+.submit-button {
+  width: fit-content;
+}
+
+.spaced-icon {
+  margin: 0 7px;
+}
+
+.contact {
+  &__title {
+    button {
+      margin-left: 20px;
+    }
+  }
+
+  &__info-item {
+    width: 100%;
+    justify-content: flex-end;
+
+    &__name {
+      margin: 0;
+      margin-right: auto;
+      text-transform: capitalize;
+    }
+  }
+}

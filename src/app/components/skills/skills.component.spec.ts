@@ -16,16 +16,16 @@ describe('SkillsComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [SkillsComponent],
       imports: [CommonModule, SharedModule],
-    }).compileComponents();
-  });
+    })
+      .compileComponents()
+      .then(() => {
+        fixture = TestBed.createComponent(SkillsComponent);
+        component = fixture.componentInstance;
+        debugElement = fixture.debugElement;
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SkillsComponent);
-    component = fixture.componentInstance;
-    debugElement = fixture.debugElement;
-
-    component.skillsCategories = SKILLS_CATEGORY_MOCK;
-    fixture.detectChanges();
+        component.skillsCategories = SKILLS_CATEGORY_MOCK;
+        fixture.detectChanges();
+      });
   });
 
   it('should create', () => {
