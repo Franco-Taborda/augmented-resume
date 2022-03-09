@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-template-pwa": {
+    "augmented-resume": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-template-pwa/browser",
+            "outputPath": "dist/augmented-resume/browser",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-template-pwa:build:production"
+              "browserTarget": "augmented-resume:build:production"
             },
             "development": {
-              "browserTarget": "angular-template-pwa:build:development"
+              "browserTarget": "augmented-resume:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-template-pwa:build"
+            "browserTarget": "augmented-resume:build"
           }
         },
         "test": {
@@ -105,7 +105,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/angular-template-pwa/server",
+            "outputPath": "dist/augmented-resume/server",
             "main": "src/main.server.ts",
             "tsConfig": "tsconfig.server.json",
             "inlineStyleLanguage": "scss"
@@ -135,12 +135,12 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-template-pwa:build:production",
-              "serverTarget": "angular-template-pwa:server:production"
+              "browserTarget": "augmented-resume:build:production",
+              "serverTarget": "augmented-resume:server:production"
             },
             "development": {
-              "browserTarget": "angular-template-pwa:build:development",
-              "serverTarget": "angular-template-pwa:server:development"
+              "browserTarget": "augmented-resume:build:development",
+              "serverTarget": "augmented-resume:server:development"
             }
           },
           "defaultConfiguration": "production"
@@ -148,7 +148,7 @@
       }
     }
   },
-  "defaultProject": "angular-template-pwa",
+  "defaultProject": "augmented-resume",
   "cli": {
     "defaultCollection": "@angular-eslint/schematics"
   }

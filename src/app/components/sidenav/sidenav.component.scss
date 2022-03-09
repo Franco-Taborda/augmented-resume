@@ -1,12 +1,11 @@
-@use "sass:color";
-
 .toggle-icon {
   position: fixed;
-  padding: 10px;
+  padding: 7px;
+  padding-right: 10px;
   height: 40px;
   width: 40px;
   cursor: pointer;
-  border-bottom-right-radius: 35px;
+  border-bottom-right-radius: 30px;
   background-color: var(--default-bg-light);
   z-index: 100;
 }

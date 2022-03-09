@@ -1,0 +1,126 @@
+<section class="item-section">
+  <h1 data-test="title" class="mat-h1 contact__title flex align-center">
+    Contact me
+    <button
+      data-test="social-media-button"
+      mat-mini-fab
+      aria-label="Open button"
+      color="accent"
+      (click)="viewSocialMedia()"
+    >
+      <mat-icon class="material-icons-outlined" aria-hidden="false" aria-label="view list icon">person_add</mat-icon>
+    </button>
+  </h1>
+  <h3 data-test="subtitle" class="mat-h3 contact__subtitle">
+    Send me an <span class="font-highlight">email</span> or press
+    <mat-icon
+      class="material-icons-outlined spaced-icon"
+      color="primary"
+      aria-hidden="false"
+      aria-label="view list icon"
+    >
+      person_add
+    </mat-icon>
+    to see contact info
+  </h3>
+
+  <mat-card class="form-card">
+    <mat-card-subtitle>Send email</mat-card-subtitle>
+    <mat-card-content>
+      <form data-test="form" class="form" [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field data-test="name" appearance="fill">
+          <mat-label>Full Name</mat-label>
+          <input matInput formControlName="fullName" placeholder="Full Name" name="name" autocomplete="off" />
+          <mat-error data-test="name-empty" *ngIf="fullName.hasError('required')">
+            Full name is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field data-test="email" appearance="fill">
+          <mat-label>Email Address</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="emailAddress"
+            placeholder="Ex. you@example.com"
+            name="email"
+            autocomplete="off"
+          />
+          <mat-error
+            data-test="email-wrong"
+            *ngIf="emailAddress.hasError('email') && !emailAddress.hasError('required')"
+          >
+            Please enter a valid email address
+          </mat-error>
+          <mat-error data-test="email-empty" *ngIf="emailAddress.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+          <mat-error data-test="email-forbidden" *ngIf="emailAddress.hasError('forbiddenEmailAddress')">
+            <strong>Forbidden</strong> email address. Try with a different one.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field data-test="message" appearance="fill">
+          <mat-label>Message</mat-label>
+          <textarea
+            matInput
+            formControlName="message"
+            placeholder="Hello Franco! Nice to meet you. I think I have an offer you'll find very interesting..."
+            name="message"
+            autocomplete="off"
+          ></textarea>
+          <mat-error data-test="message-empty" *ngIf="message.hasError('required')">
+            A message is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          data-test="submit"
+          class="submit-button"
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="form.invalid"
+        >
+          Send
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<ng-template #confirmationTemplate>
+  <h2 mat-dialog-title>Send email</h2>
+  <mat-dialog-content>
+    Should we send this email? Maybe you want to correct something before sending it...
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancel</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Send</button>
+  </mat-dialog-actions>
+</ng-template>
+
+<ng-template #bottomSheetTemplate let-contactInfo>
+  <mat-list>
+    <div mat-subheader>
+      Click <mat-icon color="accent" class="spaced-icon"> open_in_new </mat-icon> to open link in a new tab
+    </div>
+    <div mat-subheader>
+      Click <mat-icon color="primary" class="spaced-icon">content_copy</mat-icon> to copy profile id
+    </div>
+    <ng-container *ngFor="let info of contactInfo">
+      <mat-divider></mat-divider>
+      <mat-list-item>
+        <div class="contact__info-item flex align-center">
+          <p class="contact__info-item__name">{{ info.name }}</p>
+          <a mat-icon-button [href]="info.link" target="_blank" aria-label="Open link on new tab" *ngIf="info.link">
+            <mat-icon color="accent">open_in_new</mat-icon>
+          </a>
+          <button mat-icon-button (click)="copy(info.id)" *ngIf="info.id">
+            <mat-icon color="primary">content_copy</mat-icon>
+          </button>
+        </div>
+      </mat-list-item>
+    </ng-container>
+  </mat-list>
+</ng-template>

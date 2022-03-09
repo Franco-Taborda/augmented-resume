@@ -14,6 +14,8 @@ import { ResumeComponent } from './components/resume/resume.component';
 import { SkillsComponent } from './components/skills/skills.component';
 import { AboutComponent } from './components/about/about.component';
 import { SharedModule } from './shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { SharedModule } from './shared/shared.module';
     ResumeComponent,
   ],
   imports: [
+    HttpClientModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     RouterModule.forRoot(routes),
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -35,6 +38,7 @@ import { SharedModule } from './shared/shared.module';
       registrationStrategy: 'registerWhenStable:30000',
     }),
     SharedModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
