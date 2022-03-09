@@ -1,5 +1,5 @@
 import { Clipboard } from '@angular/cdk/clipboard';
-import { AfterViewInit, Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
@@ -33,7 +33,7 @@ export class ContactComponent implements OnInit, OnDestroy {
       Validators.email,
       forbiddenEmailAddress(this.forbiddenEmailAddresses),
     ]),
-    recaptcha: new FormControl('', [Validators.required]),
+    'g-recaptcha-response': new FormControl('', [Validators.required]),
     message: new FormControl('', [Validators.required, Validators.maxLength(1500)]),
   });
 
