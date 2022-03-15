@@ -76,6 +76,7 @@
           data-test="recaptcha"
           [siteKey]="siteKey"
           formControlName="g-recaptcha-response"
+          [size]="isMobile ? 'compact' : 'normal'"
         ></ngx-recaptcha2>
 
         <button

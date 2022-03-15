@@ -5,6 +5,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IContactInfo } from 'components/contact/model/contact';
+import { DeviceDetectorService } from 'ngx-device-detector';
 import { Subject, takeUntil } from 'rxjs';
 import { ContactInfoService } from 'services/contact.service';
 import { EmailService } from 'services/email.service';
@@ -25,6 +26,7 @@ export class ContactComponent implements OnInit, OnDestroy {
   private contactInfo: IContactInfo[] = [];
 
   siteKey = environment.siteKey;
+  isMobile: boolean;
 
   form = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
@@ -44,9 +46,11 @@ export class ContactComponent implements OnInit, OnDestroy {
     private emailService: EmailService,
     private contactService: ContactInfoService,
     private clipboard: Clipboard,
+    private deviceService: DeviceDetectorService,
   ) {}
 
   ngOnInit() {
+    this.setDeviceType();
     this.contactService
       .getSocialMediaLinks()
       .pipe(takeUntil(this.destroy$))
@@ -58,10 +62,6 @@ export class ContactComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.destroy$.next(void 0);
     this.destroy$.complete();
-  }
-
-  private getControl(controlName: string): AbstractControl {
-    return this.form.controls[controlName];
   }
 
   get fullName(): AbstractControl {
@@ -93,6 +93,18 @@ export class ContactComponent implements OnInit, OnDestroy {
       });
   }
 
+  copy(data: string): void {
+    this.clipboard.copy(data);
+  }
+
+  private setDeviceType(): void {
+    this.isMobile = this.deviceService.isMobile();
+  }
+
+  private getControl(controlName: string): AbstractControl {
+    return this.form.controls[controlName];
+  }
+
   private sendEmail(): void {
     this.emailService
       .sendEmail(this.form.value)
@@ -109,9 +121,5 @@ export class ContactComponent implements OnInit, OnDestroy {
             panelClass: 'snackbar--error',
           }),
       });
-  }
-
-  copy(data: string): void {
-    this.clipboard.copy(data);
   }
 }
