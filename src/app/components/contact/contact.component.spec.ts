@@ -13,7 +13,12 @@ import { SharedModule } from 'shared/shared.module';
 
 import { ContactComponent } from './contact.component';
 
-const FORM_MOCK = { emailAddress: 'test@example.com', fullName: 'test', message: 'test message', recaptcha: 'test' };
+const FORM_MOCK = {
+  emailAddress: 'test@example.com',
+  fullName: 'test',
+  message: 'test message',
+  'g-recaptcha-response': 'test',
+};
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
