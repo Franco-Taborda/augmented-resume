@@ -4,6 +4,10 @@
     <mat-list-item (click)="onItemClick('app-skills')">Skills</mat-list-item>
     <mat-list-item (click)="onItemClick('app-experience')">Experience</mat-list-item>
     <mat-list-item (click)="onItemClick('app-contact')">Contact</mat-list-item>
+    <!-- <mat-list-item data-test="install-button" *ngIf="showInstallButton$ | async" (click)="resumeInstallation()"
+      >Install</mat-list-item
+    > -->
+    <mat-list-item data-test="install-button" (click)="resumeInstallation()">Install</mat-list-item>
   </mat-nav-list>
 
   <ng-container content>
