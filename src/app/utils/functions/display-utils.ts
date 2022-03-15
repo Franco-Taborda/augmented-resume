@@ -1,4 +1,4 @@
-import { DeviceModes } from 'utils/enums/device-modes';
+import { DeviceModes } from 'utils/enums/device-modes.enum';
 
 export function getPWADisplayMode(): DeviceModes {
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches;

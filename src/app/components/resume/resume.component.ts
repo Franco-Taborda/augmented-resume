@@ -4,8 +4,6 @@ import { ISkillCategory } from 'components/skills/model/skill';
 import { Subject, takeUntil } from 'rxjs';
 import { PWAService } from 'services/pwa.service';
 import { SkillsService } from 'services/skills.service';
-import { DeviceModes } from 'utils/enums/device-modes';
-import { getPWADisplayMode } from 'utils/functions/display-utils';
 
 @Component({
   selector: 'app-resume',
@@ -20,9 +18,7 @@ export class ResumeComponent implements OnInit, OnDestroy {
   private readonly destroy$ = new Subject<void>();
 
   constructor(private skillsService: SkillsService, private pwaService: PWAService) {
-    this.checkLaunchMode();
     this.deferInstallprompt();
-    this.checkInstallation();
   }
 
   ngOnInit() {
@@ -48,22 +44,10 @@ export class ResumeComponent implements OnInit, OnDestroy {
     this.pwaService.resumeInstallation();
   }
 
-  private checkLaunchMode(): void {
-    if ((getPWADisplayMode() as DeviceModes) !== DeviceModes.browser) {
-      this.pwaService.showInstallation();
-    }
-  }
-
   private deferInstallprompt(): void {
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
-      this.pwaService.deferInstallPrompt = e;
-    });
-  }
-
-  private checkInstallation(): void {
-    window.addEventListener('appinstalled', () => {
-      this.pwaService.hideInstallation();
+      this.pwaService.handleInstallability(e);
     });
   }
 }

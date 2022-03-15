@@ -49,7 +49,8 @@ describe('ResumeComponent', () => {
   });
 
   it('should show an install button', () => {
-    pwaService.showInstallation();
+    spyOn(pwaService, 'isInstallable').and.returnValue(true);
+    pwaService.handleInstallability('test beforeinstallpromptEvent');
     fixture.detectChanges();
 
     const installButton = fixture.debugElement.query(By.css('[data-test="install-button"]'));
