@@ -30,7 +30,7 @@
       <form data-test="form" class="form" [formGroup]="form" (ngSubmit)="submit()">
         <mat-form-field data-test="name" appearance="fill">
           <mat-label>Full Name</mat-label>
-          <input matInput formControlName="fullName" placeholder="Full Name" name="name" autocomplete="off" />
+          <input matInput formControlName="fullName" placeholder="Full Name" autocomplete="off" />
           <mat-error data-test="name-empty" *ngIf="fullName.hasError('required')">
             Full name is <strong>required</strong>
           </mat-error>
@@ -43,7 +43,6 @@
             type="email"
             formControlName="emailAddress"
             placeholder="Ex. you@example.com"
-            name="email"
             autocomplete="off"
           />
           <mat-error
@@ -66,13 +65,18 @@
             matInput
             formControlName="message"
             placeholder="Hello Franco! Nice to meet you. I think I have an offer you'll find very interesting..."
-            name="message"
             autocomplete="off"
           ></textarea>
           <mat-error data-test="message-empty" *ngIf="message.hasError('required')">
             A message is <strong>required</strong>
           </mat-error>
         </mat-form-field>
+
+        <ngx-recaptcha2
+          data-test="recaptcha"
+          [siteKey]="siteKey"
+          formControlName="g-recaptcha-response"
+        ></ngx-recaptcha2>
 
         <button
           data-test="submit"

@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { SidenavComponent } from 'components/sidenav/sidenav.component';
 import { ISkillCategory } from 'components/skills/model/skill';
-import { Observable } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
+import { PWAService } from 'services/pwa.service';
 import { SkillsService } from 'services/skills.service';
 
 @Component({
@@ -9,22 +10,44 @@ import { SkillsService } from 'services/skills.service';
   templateUrl: './resume.component.html',
   styleUrls: ['./resume.component.scss'],
 })
-export class ResumeComponent implements OnInit {
+export class ResumeComponent implements OnInit, OnDestroy {
   @ViewChild(SidenavComponent) sidenavCompnent: SidenavComponent;
   skillsCategories: ISkillCategory[];
+  showInstallButton$: Subject<boolean> = this.pwaService.installationFlag$;
 
-  constructor(private skillsService: SkillsService) {
-    this.skillsService.getSkills().pipe();
+  private readonly destroy$ = new Subject<void>();
+
+  constructor(private skillsService: SkillsService, private pwaService: PWAService) {
+    this.deferInstallprompt();
   }
 
   ngOnInit() {
-    this.skillsService.getSkills().subscribe((skillsCategories) => {
-      this.skillsCategories = skillsCategories;
-    });
+    this.skillsService
+      .getSkills()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((skillsCategories) => {
+        this.skillsCategories = skillsCategories;
+      });
+  }
+
+  ngOnDestroy() {
+    this.destroy$.next(void 0);
+    this.destroy$.complete();
   }
 
   onItemClick(selector: string): void {
     this.sidenavCompnent.closeSidenav();
     document.querySelector(selector)?.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  resumeInstallation(): void {
+    this.pwaService.resumeInstallation();
+  }
+
+  private deferInstallprompt(): void {
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      this.pwaService.handleInstallability(e);
+    });
   }
 }

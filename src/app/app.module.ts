@@ -16,6 +16,7 @@ import { AboutComponent } from './components/about/about.component';
 import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     SharedModule,
     ReactiveFormsModule,
+    NgxCaptchaModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

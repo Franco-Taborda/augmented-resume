@@ -4,9 +4,10 @@
 
 export const environment = {
   production: false,
-  version: '0.0.8',
+  version: '0.0.10',
   url: 'https://dx50c2r2pohi7.cloudfront.net',
   emailUrl: 'https://formspree.io/f/xayvjvgz',
+  siteKey: '6LdbW8geAAAAAIqkyd_q01M6y0rDl2re7FzNLMgQ',
 };
 
 /*

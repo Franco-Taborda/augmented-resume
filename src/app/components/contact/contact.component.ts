@@ -9,6 +9,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { ContactInfoService } from 'services/contact.service';
 import { EmailService } from 'services/email.service';
 import { forbiddenEmailAddress } from 'shared/directives/forbidden-email-address.directive';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -23,6 +24,8 @@ export class ContactComponent implements OnInit, OnDestroy {
   private forbiddenEmailAddresses = [/franco_x@outlook.com/];
   private contactInfo: IContactInfo[] = [];
 
+  siteKey = environment.siteKey;
+
   form = new FormGroup({
     fullName: new FormControl('', [Validators.required, Validators.maxLength(50)]),
     emailAddress: new FormControl('', [
@@ -30,6 +33,7 @@ export class ContactComponent implements OnInit, OnDestroy {
       Validators.email,
       forbiddenEmailAddress(this.forbiddenEmailAddresses),
     ]),
+    'g-recaptcha-response': new FormControl('', [Validators.required]),
     message: new FormControl('', [Validators.required, Validators.maxLength(1500)]),
   });
 
