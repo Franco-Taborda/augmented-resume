@@ -80,6 +80,11 @@ describe('ContactComponent', () => {
     expect(title).toBeTruthy();
   });
 
+  it('should show a subtitle', () => {
+    const subtitle = debugElement.query(By.css('[data-test="subtitle"]'));
+    expect(subtitle).toBeTruthy();
+  });
+
   it('should show a social media button', () => {
     const button = debugElement.query(By.css('[data-test="social-media-button"]'));
     expect(button).toBeTruthy();

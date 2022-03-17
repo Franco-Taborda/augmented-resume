@@ -17,6 +17,7 @@ import { SharedModule } from './shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     ResumeComponent,
   ],
   imports: [
+    CommonModule,
     HttpClientModule,
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     RouterModule.forRoot(routes),
