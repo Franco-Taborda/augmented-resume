@@ -3,7 +3,7 @@ import { IExperience } from 'components/experience/models/experience.interface';
 import { ExperienceService } from 'services/experience.service';
 import { map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { SkillSVGs } from 'components/skills/enums/skills.enum';
+import { SKILLS_SVG_MAP } from 'utils/constants/skills';
 
 @Component({
   selector: 'app-experience',
@@ -23,7 +23,8 @@ export class ExperienceComponent implements OnInit {
           exp.endDate = new Date(exp.endDate);
           exp.projects.forEach((project) => {
             project.usedTechnologies.forEach(
-              (technology) => (technology.imgSrc = `${environment.url}/assets/images/${SkillSVGs[technology.name]}`),
+              (technology) =>
+                (technology.imgSrc = `${environment.url}/assets/images/${SKILLS_SVG_MAP.get(technology.name)}`),
             );
           });
         });
