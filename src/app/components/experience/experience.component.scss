@@ -15,7 +15,7 @@
   &__content {
     padding: 0 16px 10px;
     max-height: 7rem;
-    overflow: clip;
+    overflow: hidden;
 
     &-wrapper {
       margin: 0 -16px 16px;
@@ -45,6 +45,10 @@
     .mat-chip-avatar {
       width: 20px;
       height: 20px;
+
+      img {
+        width: 100%;
+      }
     }
   }
 
