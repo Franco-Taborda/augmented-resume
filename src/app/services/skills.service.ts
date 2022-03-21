@@ -61,6 +61,12 @@ export class SkillsService {
             name: 'Angular +7',
             logoSrc: `${environment.url}/assets/images/angular_logo.svg`,
             description: 'The framework I have more experience with',
+            certificates: [
+              {
+                name: 'Angular Core Deep Dive',
+                url: 'https://www.udemy.com/certificate/UC-e68e0852-085e-4523-817f-a79cd4465a94/',
+              },
+            ],
           },
         ],
       } as ISkillCategory,
