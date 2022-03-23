@@ -1,5 +1,5 @@
 <mat-sidenav-container class="example-container">
-  <mat-sidenav #sidenav mode="over" closed fixedInViewport="true">
+  <mat-sidenav #sidenav [mode]="mode" [opened]="opened" fixedInViewport="true">
     <div class="sidenav__logo-container">
       <img class="sidenav__logo" src="assets/images/onlyLogo.svg" alt="logo image" (click)="closeSidenav()" />
     </div>
@@ -8,6 +8,7 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <img
+      *ngIf="!isDesktop"
       id="toggleIcon"
       data-test="toggle-sidenav-button"
       class="toggle-icon"

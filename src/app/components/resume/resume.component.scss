@@ -1,4 +1,11 @@
 .resume-container {
-  margin: 2rem;
-  margin-top: 0;
+  margin: 0 12px 24px;
+
+  @media only screen and (min-width: 641px) {
+    margin: 0 1.5rem 2rem;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    margin: 0 3rem 2rem;
+  }
 }

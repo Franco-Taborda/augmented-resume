@@ -11,47 +11,49 @@
         </p>
       </section>
 
-      <mat-card data-test="experience-card" class="experience-card" *ngFor="let project of experience.projects">
-        <mat-card-title-group>
-          <mat-card-title data-test="client-name">{{ project.clientName }}</mat-card-title>
-          <div mat-card-avatar>
-            <a
-              mat-icon-button
-              color="accent"
-              data-test="company-url"
-              target="_blank"
-              [href]="experience.companyUrl"
-              target="_blank"
-            >
-              <mat-icon>launch</mat-icon>
-            </a>
-          </div>
-          <mat-card-subtitle data-test="working-period">
-            {{ project.projectName }}
-          </mat-card-subtitle>
-        </mat-card-title-group>
+      <section class="experience-card__container">
+        <mat-card data-test="experience-card" class="experience-card" *ngFor="let project of experience.projects">
+          <mat-card-title-group>
+            <mat-card-title data-test="client-name">{{ project.clientName }}</mat-card-title>
+            <div mat-card-avatar>
+              <a
+                mat-icon-button
+                color="accent"
+                data-test="company-url"
+                target="_blank"
+                [href]="experience.companyUrl"
+                target="_blank"
+              >
+                <mat-icon>launch</mat-icon>
+              </a>
+            </div>
+            <mat-card-subtitle data-test="working-period">
+              {{ project.projectName }}
+            </mat-card-subtitle>
+          </mat-card-title-group>
 
-        <mat-card-content data-test="project-description" class="experience-card__content-wrapper">
-          <div class="experience-card__content">
-            <p data-test="description-item" *ngFor="let item of project.jobDescriptionItems">{{ item }}</p>
-          </div>
-        </mat-card-content>
+          <mat-card-content data-test="project-description" class="experience-card__content-wrapper">
+            <div class="experience-card__content">
+              <p data-test="description-item" *ngFor="let item of project.jobDescriptionItems">{{ item }}</p>
+            </div>
+          </mat-card-content>
 
-        <mat-card-footer class="experience-card__footer">
-          <mat-chip-list aria-label="List of used technologies">
-            <mat-chip
-              data-test="used-technology"
-              class="experience-card__chip"
-              *ngFor="let technology of project.usedTechnologies"
-            >
-              <mat-chip-avatar>
-                <img [src]="technology.imgSrc" [alt]="technology.name + ' image'" />
-              </mat-chip-avatar>
-              {{ technology.name }}
-            </mat-chip>
-          </mat-chip-list>
-        </mat-card-footer>
-      </mat-card>
+          <mat-card-footer class="experience-card__footer">
+            <mat-chip-list aria-label="List of used technologies">
+              <mat-chip
+                data-test="used-technology"
+                class="experience-card__chip"
+                *ngFor="let technology of project.usedTechnologies"
+              >
+                <mat-chip-avatar>
+                  <img [src]="technology.imgSrc" [alt]="technology.name + ' image'" />
+                </mat-chip-avatar>
+                {{ technology.name }}
+              </mat-chip>
+            </mat-chip-list>
+          </mat-card-footer>
+        </mat-card>
+      </section>
     </ng-container>
   </ng-container>
 </section>
