@@ -6,12 +6,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { IContactInfo } from 'components/contact/model/contact';
 import { DeviceDetectorService } from 'ngx-device-detector';
-import { Subject, takeUntil, switchMap, of } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { ContactInfoService } from 'services/contact.service';
 import { EmailService } from 'services/email.service';
 import { forbiddenEmailAddress } from 'shared/directives/forbidden-email-address.directive';
 import { environment } from 'src/environments/environment';
-import { TestService } from '../../services/test.service';
 
 @Component({
   selector: 'app-contact',
@@ -48,7 +47,6 @@ export class ContactComponent implements OnInit, OnDestroy {
     private contactService: ContactInfoService,
     private clipboard: Clipboard,
     private deviceService: DeviceDetectorService,
-    private testService: TestService,
   ) {}
 
   ngOnInit() {
@@ -59,18 +57,6 @@ export class ContactComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (res) => (this.contactInfo = res),
       });
-
-    this.testFullName();
-  }
-
-  testFullName(): void {
-    this.form
-      .get('fullName')
-      ?.valueChanges.pipe(
-        takeUntil(this.destroy$),
-        switchMap((val) => this.testService.sequencedItems(val)),
-      )
-      .subscribe((res) => console.log('Response: ', res));
   }
 
   ngOnDestroy(): void {

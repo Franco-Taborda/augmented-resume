@@ -32,6 +32,8 @@ describe('SidenavComponent', () => {
   });
 
   it('should show a button to toggle the sidenav', () => {
+    component.isDesktop = false;
+    fixture.detectChanges();
     const button = fixture.debugElement.query(By.css('[data-test="toggle-sidenav-button"'));
     expect(button).toBeTruthy();
   });
