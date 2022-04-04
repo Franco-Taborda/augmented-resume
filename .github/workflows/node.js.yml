@@ -28,21 +28,30 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Lint
-        run: npm lint
-
       - name: Build
         run: npm run build:ci
 
+  TEST:
+    name: Test
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lint
+        run: npm run lint
+
+      - name: Test
+        run: npm run test:ci
+
   DEV:
     name: Deploy to Dev
-    needs: build
+    if: github.event.ref == "refs/heads/dev"
+    needs: TEST
     runs-on: ubuntu-latest
     environment:
       name: Development
     steps:
-      - name: Test
-        run: npm test:ci
+      - name: TODO
+        run: echo "deploy to dev"
 
   STAGING:
     name: Deploy to Staging
