@@ -28,16 +28,11 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build:ci
-
-  TEST:
-    name: Test
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Lint
         run: npm run lint
+
+      - name: Build
+        run: npm run build:ci
 
       - name: Test
         run: npm run test:ci
@@ -45,7 +40,7 @@ jobs:
   DEV:
     name: Deploy to Dev
     if: github.event_name == 'push'
-    needs: TEST
+    needs: build
     runs-on: ubuntu-latest
     environment:
       name: Development
