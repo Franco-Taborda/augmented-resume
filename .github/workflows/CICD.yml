@@ -63,7 +63,7 @@ jobs:
   STAGING:
     name: Deploy to Staging
     if: github.event.pull_request.merged
-    need: build_and_test
+    needs: build_and_test
     runs-on: ubuntu-latest
     environment:
       name: Staging
