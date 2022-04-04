@@ -9,7 +9,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
+    "build:ci": "ng build --prod"
   },
   "private": true,
   "dependencies": {
