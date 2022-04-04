@@ -11,6 +11,8 @@
   $self: &;
   position: relative;
   margin-bottom: 32px;
+  height: fit-content;
+  min-width: 325px;
 
   &__content {
     padding: 0 16px 10px;
@@ -70,6 +72,16 @@
         box-shadow: none;
         transition: all 0.5s ease;
       }
+    }
+  }
+}
+
+@media only screen and (min-width: 512px) {
+  .experience-card {
+    &__container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 12px;
     }
   }
 }

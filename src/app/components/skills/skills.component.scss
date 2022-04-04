@@ -12,7 +12,7 @@
 }
 
 .skill-card {
-  min-width: 50px;
+  min-width: 270px;
 
   &-container {
     display: grid;
@@ -28,5 +28,13 @@
     a {
       font-size: 0.8rem;
     }
+  }
+}
+
+@media only screen and (min-width: 375px) {
+  .category-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 12px;
   }
 }

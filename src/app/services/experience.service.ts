@@ -92,7 +92,7 @@ export class ExperienceService {
         endDate: '2022-01-01T00:00:00',
         projects: [
           {
-            projectName: 'Students Portal',
+            projectName: 'Back Office NX',
             jobTitle: 'Front End Developer',
             clientName: 'NaranjaX',
             jobDescriptionItems: [

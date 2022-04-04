@@ -1,6 +1,6 @@
 {
   "name": "augmented-resume",
-  "version": "0.0.13",
+  "version": "0.0.15",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
@@ -11,7 +11,7 @@
     "lint": "ng lint",
     "prepare": "husky install",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
-    "build:ci": "ng build --prod"
+    "build:ci": "ng run augmented-resume:app-shell"
   },
   "private": true,
   "dependencies": {
