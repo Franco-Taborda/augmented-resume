@@ -44,7 +44,7 @@ jobs:
 
   DEV:
     name: Deploy to Dev
-    if: github.event.ref == "refs/heads/dev"
+    if: github.event_name == 'push'
     needs: TEST
     runs-on: ubuntu-latest
     environment:
