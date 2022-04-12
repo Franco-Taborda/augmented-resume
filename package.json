@@ -1,6 +1,6 @@
 {
   "name": "augmented-resume",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0",
